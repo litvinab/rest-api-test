@@ -106,7 +106,7 @@ assertResponseCode(Response $response, $expectedStatusCode)
 namespace Project\Infrastructure\Repository;
 
 use Litvinab\Bundle\RestApiTestBundle\TestCase\FixturesWebTestCase;
-use Project\Infrastructure\Repository\AttributeRepository;
+use Project\Domain\Entity\Attribute;
 
 class AttributeRepositoryTest extends FixturesWebTestCase
 {
