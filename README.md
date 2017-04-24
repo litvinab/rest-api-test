@@ -118,8 +118,8 @@ class AttributeRepositoryTest extends FixturesWebTestCase
         $attr = $repo->getBySlug('currency');
 
         $this->assertInstanceOf(Attribute::class, $attr);
-        $this->assertEquals(2, $attr->getId()->toInt());
-        $this->assertEquals('Product Currency', $attr->getName());
+        $this->assertEquals(2, $attr->getId());
+        $this->assertEquals('Product Currency', $attr->getCaption());
     }
 }
 ```
