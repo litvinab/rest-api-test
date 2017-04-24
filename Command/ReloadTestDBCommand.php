@@ -1,5 +1,5 @@
 <?php
-namespace Litvinab\Bundle\RestApiTest\Command;
+namespace Litvinab\Bundle\RestApiTestBundle\Command;
 
 
 use Symfony\Component\Console\Command\Command;

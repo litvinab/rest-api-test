@@ -19,6 +19,6 @@
     "timeinc/swagger-bundle": "^0.2.0"
   },
   "autoload":{
-    "psr-4": { "Litvinab\\Bundle\\RestApiTest\\": "" }
+    "psr-4": { "Litvinab\\Bundle\\RestApiTestBundle\\": "" }
   }
 }

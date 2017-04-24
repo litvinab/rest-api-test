@@ -1,5 +1,5 @@
 <?php
-namespace Litvinab\Bundle\RestApiTest\TestCase;
+namespace Litvinab\Bundle\RestApiTestBundle\TestCase;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Bundle\FrameworkBundle\Console\Application;

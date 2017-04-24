@@ -1,6 +1,6 @@
 <?php
 
-namespace Litvinab\Bundle\RestApiTest;
+namespace Litvinab\Bundle\RestApiTestBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

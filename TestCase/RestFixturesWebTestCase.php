@@ -1,6 +1,6 @@
 <?php
 
-namespace Litvinab\Bundle\RestApiTest\TestCase;
+namespace Litvinab\Bundle\RestApiTestBundle\TestCase;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Litvinab\Bundle\RestApiTest\Controller;
+namespace Litvinab\Bundle\RestApiTestBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Console\Input\StringInput;
