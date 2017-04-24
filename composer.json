@@ -11,7 +11,9 @@
     }
   ],
   "require": {
-    "symfony/framework-bundle": "~2.1",
+    "symfony/framework-bundle": "~2.1"
+  },
+  "require-dev": {
     "phpunit/phpunit": "5.*",
     "doctrine/doctrine-fixtures-bundle": "2.*"
   },
