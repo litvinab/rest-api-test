@@ -77,7 +77,7 @@ getRepository($name)
 
 #### RestFixturesWebTestCase
 
-*Test Methods:*
+*Methods:*
 ```php
 getJson($endpoint, $headers = array())
 
