@@ -33,11 +33,11 @@ class AppKernel extends Kernel
 
 ### Application Configuration
 
-Setup `parameters_test.yml` with test database name and connection details.
+1. Setup `parameters_test.yml` with test database name and connection details;
 
-Create data fixtures and configure them right
+2. Create data fixtures and configure them right;
 
-Add route to `routing_dev.yml`:
+3. Add route to `routing_dev.yml`:
 
 ```yml
 rest_api_test:
