@@ -7,7 +7,7 @@ use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Output\BufferedOutput;
-use Litvinab\Bundle\RestApiTest\Command\ReloadTestDBCommand;
+use Litvinab\Bundle\RestApiTestBundle\Command\ReloadTestDBCommand;
 use Swagger\Annotations as SWG;
 
 /**
