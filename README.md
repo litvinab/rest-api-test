@@ -29,9 +29,7 @@ class AppKernel extends Kernel
 
 ```
 
-## Configure Bundle
-
-### Application Configuration
+## Application Configuration
 
 1. Setup `parameters_test.yml` with test database name and connection details;
 
