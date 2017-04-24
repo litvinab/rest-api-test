@@ -1,0 +1,21 @@
+{
+  "name": "litvinab/rest-api-test",
+  "type": "symfony-bundle",
+  "description": "Contains Symfony command and controller to reload test database from scratch, data fixtures based test case to make automatic tests pretty simple and readable",
+  "keywords": ["Rest Api", "Test", "Test case"],
+  "homepage": "https://github.com/litvinab/rest-api-test",
+  "authors": [
+    {
+      "name": "Anton Litvin",
+      "email": "litvinab@gmail.com"
+    }
+  ],
+  "require": {
+    "symfony/framework-bundle": "~2.1",
+    "phpunit/phpunit": "5.*",
+    "doctrine/doctrine-fixtures-bundle": "2.*"
+  },
+  "autoload":{
+    "psr-4": { "Litvinab\\Bundle\\RestApiTestBundle\\": "" }
+  }
+}
