@@ -4,9 +4,18 @@ namespace Litvinab\Bundle\RestApiTestBundle\TestCase;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Client;
 
 class RestFixturesWebTestCase extends FixturesWebTestCase
 {
+    /** @var Client */
+    protected $client;
+
+    public function setUp()
+    {
+        $this->client = static::createClient();
+    }
+
     /**
      * Request json to specified endpoint as authorized client
      *
@@ -19,15 +28,13 @@ class RestFixturesWebTestCase extends FixturesWebTestCase
      */
     protected function requestJson($method, $endpoint, $json, array $headers = array())
     {
-        $client = static::createClient();
-
         $predefinedHeaders = array(
             'CONTENT_TYPE' => 'application/json'
         );
 
         $headers = array_merge($predefinedHeaders, $headers);
 
-        $client->request(
+        $this->client->request(
             $method,
             $endpoint,
             array(),
@@ -36,7 +43,7 @@ class RestFixturesWebTestCase extends FixturesWebTestCase
             $json
         );
 
-        return $client->getResponse();
+        return $this->client->getResponse();
     }
 
     /**
