@@ -59,7 +59,7 @@ rest_api_test:
 
 ### Test Cases
 
-Extend test cases mentioned below to reload database before each test.
+Extend test cases mentioned below and method to reload database before each test or before required test.
 
 #### FixturesWebTestCase
 
@@ -86,6 +86,8 @@ postJson($endpoint, $json, array $headers = array())
 putJson($endpoint, $json, array $headers = array())
 
 deleteJson($endpoint, array $headers = array())
+
+reloadDb() - reload test database with data fixtures by prompt
 ```
 
 *Asserts:*
@@ -110,6 +112,13 @@ use Project\Domain\Entity\Attribute;
 
 class AttributeRepositoryTest extends FixturesWebTestCase
 {
+    public function setUp()
+    {
+        parent::setUp();
+        
+        $this->reloadDb();
+    }
+    
     public function test_get_by_slug__success()
     {
         $repo = $this->getRepository('ProjectDomain:Attribute');
@@ -136,6 +145,8 @@ class AttributeControllerTest extends RestFixturesWebTestCase
 {
     public function test_get_task__success()
     {
+        $this->reloadDb();
+        
         $response = $this->getJson('/api/attributes/currency');
 
         $expectedJson = '{"caption":"Product Currency","slug":"currency"}';

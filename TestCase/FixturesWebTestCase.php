@@ -16,7 +16,13 @@ class FixturesWebTestCase extends WebTestCase
     {
         self::bootKernel();
         self::$container = self::$kernel->getContainer();
+    }
 
+    /**
+     * Reload test database with data fixtures
+     */
+    protected function reloadDb()
+    {
         self::runCommand(ReloadTestDBCommand::NAME);
     }
 
