@@ -60,7 +60,7 @@ rest_api_test:
 
 ### Test Cases
 
-Extend test cases mentioned below and method to reload database before each test or before required test.
+Extend test cases mentioned below and call method to reload database before each test or before specified test.
 
 #### FixturesWebTestCase
 
