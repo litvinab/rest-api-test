@@ -4,6 +4,7 @@ namespace Litvinab\Bundle\RestApiTestBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Console\Input\StringInput;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Output\BufferedOutput;
@@ -19,7 +20,7 @@ class TestController extends Controller
     /**
      * @SWG\Get(
      *      path="/test/db/reload",
-     *      summary="Recreate test database, reload data fixtures",
+     *      summary="Reload data fixtures",
      *      tags={"test"},
      *      @SWG\Response(
      *              response=200,
@@ -27,7 +28,7 @@ class TestController extends Controller
      *      ),
      *      @SWG\Response(
      *              response=404,
-     *              description="request ran not under dev, test environment"
+     *              description="request ran not under dev OR test environment"
      *      )
      * )
      *
@@ -44,7 +45,9 @@ class TestController extends Controller
         $application = new Application($kernel);
         $application->setAutoExit(false);
 
-        $input = new StringInput(ReloadTestDBCommand::NAME);
+        $command = sprintf('%s --%s', ReloadTestDBCommand::NAME, ReloadTestDBCommand::FIXTURES_ONLY);
+
+        $input = new StringInput($command);
         $output = new BufferedOutput();
 
         $application->run($input, $output);

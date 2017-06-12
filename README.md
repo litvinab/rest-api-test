@@ -47,14 +47,14 @@ rest_api_test:
 
 ### Operations
 
-*Command*
+*Commands*
 
-`bin/console db:test:reload` - it can be useful for deployment scripts and other stuff.
-
+`bin/console db:test:reload` - drop test database, recreate it and load test data fixtures;
+`bin/console db:test:reload --fixtures-only` - reload test data fixtures without database recreation and schema update;
 
 *Controller*
 
-`http://YOUR_DOMAIN/app_dev.php/api/test/db/reload` - it can be useful for external integration tests.
+`http://YOUR_DOMAIN/app_dev.php/api/test/db/reload` - reload test data fixtures without database recreation and schema update;
 
 
 ### Test Cases
