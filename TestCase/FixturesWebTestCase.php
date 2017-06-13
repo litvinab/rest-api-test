@@ -23,7 +23,8 @@ class FixturesWebTestCase extends WebTestCase
      */
     protected function reloadDb()
     {
-        self::runCommand(ReloadTestDBCommand::NAME);
+        $commandString = sprintf('%s --%s', ReloadTestDBCommand::NAME, ReloadTestDBCommand::FIXTURES_ONLY);
+        self::runCommand($commandString);
     }
 
     protected function getContainer()
