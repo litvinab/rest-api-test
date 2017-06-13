@@ -50,7 +50,6 @@ rest_api_test:
 *Commands*
 
 `bin/console db:test:reload` - drop test database, recreate it and load test data fixtures;
-
 `bin/console db:test:reload --fixtures-only` - reload test data fixtures without database recreation and schema update;
 
 *Controller*
@@ -60,7 +59,7 @@ rest_api_test:
 
 ### Test Cases
 
-Extend test cases mentioned below and call method to reload database before each test or before specified test.
+Extend test cases mentioned below and method to reload database before each test or before required test.
 
 #### FixturesWebTestCase
 
@@ -88,7 +87,7 @@ putJson($endpoint, $json, array $headers = array())
 
 deleteJson($endpoint, array $headers = array())
 
-reloadDb() - reload test database with data fixtures by prompt
+reloadDb() - reload data fixtures by prompt without db recreation and schema update
 ```
 
 *Asserts:*
