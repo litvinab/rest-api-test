@@ -87,7 +87,7 @@ putJson($endpoint, $json, array $headers = array())
 
 deleteJson($endpoint, array $headers = array())
 
-reloadDb() - reload test database with data fixtures by prompt
+reloadDb() - reload data fixtures by prompt without db recreation and schema update
 ```
 
 *Asserts:*
