@@ -1,8 +1,8 @@
 {
   "name": "litvinab/rest-api-test",
   "type": "symfony-bundle",
-  "description": "Contains Symfony command and controller to reload test database from scratch, data fixtures based test case to make automatic tests pretty simple and readable",
-  "keywords": ["Rest Api", "Test", "Test case"],
+  "description": "This symfony bundle is made to simplify testing of your rest API. It can be useful in running of functional data fixtures based tests and acceptance (Behat) tests. It simplifies automatic tests development by provided test cases classes and commands",
+  "keywords": ["Rest Api", "Test", "Test case", "Behat"],
   "homepage": "https://github.com/litvinab/rest-api-test",
   "authors": [
     {
