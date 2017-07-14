@@ -1,4 +1,0 @@
-dc.api.test.reload_db:
-    path:     /db/reload
-    defaults: { _controller: RestApiTestBundle:Test:reloadDB }
-    methods: [GET]

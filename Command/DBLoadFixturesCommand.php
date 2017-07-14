@@ -16,7 +16,7 @@ class DBLoadFixturesCommand extends Command
     protected function configure()
     {
         $this->setName(self::NAME)
-            ->setDescription(sprintf('Alias of %s', self::DOCTRINE_CMD));
+            ->setDescription(sprintf('Alias of "%s %s" command', self::DOCTRINE_CMD, self::DOCTRINE_CMD_FLAGS));
             ;
     }
 

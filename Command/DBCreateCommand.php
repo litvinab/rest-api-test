@@ -14,7 +14,7 @@ class DBCreateCommand extends Command
     protected function configure()
     {
         $this->setName(self::NAME)
-            ->setDescription('Alias for doctrine:database:create')
+            ->setDescription('Alias of "doctrine:database:create" command')
             ;
     }
 

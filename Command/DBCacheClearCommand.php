@@ -14,7 +14,7 @@ class DBCacheClearCommand extends Command
     protected function configure()
     {
         $this->setName(self::NAME)
-            ->setDescription('Clean metadata, query, result cache at the same time');
+            ->setDescription('Clean database metadata, query, result cache at the same time');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)

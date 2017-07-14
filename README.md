@@ -1,10 +1,20 @@
 # RestAPITest
 
+This symfony bundle is made to simplify testing of your rest API.
+
+It can be useful in running of following types of tests:
+- Functional Data Fixtures Based Tests;
+- Acceptance (Behat) Tests;
+
+See an appropriate sections below.
+
+Also current bundle provides some aliases of doctrine commands. It was made to prevent copy-paste of the same commands in your CI (for example, in Makefile, in setup of your tests, etc.)
+
 ## Installation
 
 Install via Composer:
 ```bash
-composer require litvinab/rest-api-test --dev
+composer require litvinab/rest-api-test
 ```
 
 ## Enable Bundle
@@ -18,10 +28,10 @@ class AppKernel extends Kernel
     {
         // ...
 
-        if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
-            // ...
-            $bundles[] = new Litvinab\Bundle\RestApiTestBundle\RestApiTestBundle();
-        }
+        $bundles = [
+            ...
+            new Litvinab\Bundle\RestApiTestBundle\RestApiTestBundle()
+        ];
 
         // ...
     }
@@ -29,38 +39,39 @@ class AppKernel extends Kernel
 
 ```
 
-## Application Configuration
+## Functional Data Fixtures Based Tests
+
+### Configuration
 
 1. Setup `parameters_test.yml` with test database name and connection details;
 
-2. Create data fixtures and configure them right;
-
-3. Add route to `routing_dev.yml`:
-
+2. Add parameters to `parameters.yml` (it is utilized by Acceptance tests only, but it need to be set. See explanation under `Acceptance Tests` section):
 ```yml
-rest_api_test:
-    resource: "@RestApiTestBundle/Resources/config/routing.yml"
-    prefix:   /api/test
+    rest_api_test.controller_on: false
+    rest_api_test.access_token: "5j%]4fX.)z[HTR{M"
 ```
-
-## How To Use
-
-### Operations
-
-*Commands*
-
-`bin/console db:test:reload` - drop test database, recreate it and load test data fixtures;
-
-`bin/console db:test:reload --fixtures-only` - reload test data fixtures without database recreation and schema update;
-
-*Controller*
-
-`http://YOUR_DOMAIN/app_dev.php/api/test/db/reload` - reload test data fixtures without database recreation and schema update;
+  
+3. Create data fixtures and configure them right;
 
 
-### Test Cases
 
-Extend test cases mentioned below and call method to reload database before each test or before specified test.
+### Commands
+
+`bin/console db:create` - alias of `doctrine:database:create` command;
+
+`bin/console db:create-scheme` - alias of `doctrine:schema:create --force` command;
+
+`bin/console db:load-fixtures` - alias of `doctrine:fixtures:load --no-interaction` command;
+
+`bin/console db:clear-cache` - clean database metadata, query, result cache at the same time;
+
+
+### How To Use
+
+Extend test cases mentioned below and call method to reload test data fixtures before each test or before specified test.
+
+Call `db:create`, `db:create-schema` before using to create test database and create database schema;
+
 
 #### FixturesWebTestCase
 
@@ -162,3 +173,51 @@ class AttributeControllerTest extends RestFixturesWebTestCase
     }
 }    
 ```
+
+## Acceptance (Behat) Tests
+
+### Configuration
+
+Setup separated application instance for acceptance tests and make points 1-3 from `Functional Data Fixtures Based Tests` section.
+
+1. Add route to `routing.yml`:
+
+```yml
+rest_api_test:
+    resource: "@RestApiTestBundle/Resources/config/routing.yml"
+    prefix:   /api/test
+```
+
+2. Set `rest_api_test.controller_on` to `true`;
+
+3. Check that `rest_api_test.access_token` is secured enough;
+
+Go to `http://YOUR_DOMAIN/api/test/db/reload`
+
+It should load test data fixtures without database recreation and schema update.
+
+
+### How To Use
+
+*Your application side:*
+
+1. set `rest_api_test.controller_on` to `true` to turn ON endpoint to reload database in symfony prod environment.
+ 
+ *Be careful!* It should be turned ON for acceptance tests (external tests of rest API) only.
+
+ *Do not turn ON it at production server!*
+ 
+ It would be good to setup additional security rules for this endpoint, for example, white list of IPs.
+
+2. set `rest_api_test.access_token` to some random strong password, for example, `5j%]4fX.)z[HTR{M`;
+
+This token required to access to reload db endpoint; It will be applied only if`rest_api_test.controller_on` is set to `true`;
+
+
+*Behat tests runner side:*
+
+Make `GET` request to reload database state of your application. It should be made before each acceptance test.
+
+Endpoint: `http://YOUR_DOMAIN/api/test/db/reload`
+
+Custom header: `Rest-API-Test-Access-Token: 5j%]4fX.)z[HTR{M`
