@@ -3,14 +3,16 @@
 namespace Litvinab\Bundle\RestApiTestBundle\Controller;
 
 use Litvinab\Bundle\RestApiTestBundle\Command\DBLoadFixturesCommand;
+use Litvinab\Bundle\RestApiTestBundle\Service\RequestAccessChecker;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Component\Console\Output\BufferedOutput;
-use Litvinab\Bundle\RestApiTestBundle\Command\ReloadTestDBCommand;
 use Swagger\Annotations as SWG;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class TestController
@@ -26,22 +28,23 @@ class TestController extends Controller
      *      @SWG\Response(
      *              response=200,
      *              description="Success"
-     *      ),
-     *      @SWG\Response(
-     *              response=404,
-     *              description="request ran not under dev OR test environment"
      *      )
      * )
      *
+     * @param Request $request
      * @return Response
      */
-    public function reloadDBAction()
+    public function reloadDBAction(Request $request)
     {
-        $kernel = $this->get('kernel');
+        /** @var RequestAccessChecker $requestAccessChecker */
+        $requestAccessChecker = $this->get('rest_api_test.request_access_checker');
 
-        if($kernel->getEnvironment() !== 'test') {
-            return new Response(null, Response::HTTP_NOT_FOUND);
+        if (!$requestAccessChecker->isAccessGranted($request)) {
+            // 404 was thrown to prevent detection of current bundle on the servers
+            throw new NotFoundHttpException();
         }
+
+        $kernel = $this->get('kernel');
 
         $application = new Application($kernel);
         $application->setAutoExit(false);
@@ -54,6 +57,5 @@ class TestController extends Controller
         $application->run($input, $output);
 
         return new Response($output->fetch());
-
     }
 }
