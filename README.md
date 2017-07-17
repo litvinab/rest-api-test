@@ -186,7 +186,8 @@ rest_api_test:
 ```    
 
 `rest_api_test.controller_on` (false by default) - parameter to turn ON/OFF endpoint to reload database in symfony prod environment.
- Be careful! It should be turned ON for acceptance tests (external tests of rest API) only.  **Do not turn ON it at production server!**
+ 
+ **Be careful!** It should be turned ON for acceptance tests (external tests of rest API) only.  **Do not turn ON it at production server!**
  It would be good to setup additional security rules for this endpoint, for example, white list of IPs.
   
  `rest_api_test.access_token` (empty string by default) - random strong password, for example, `5j%]4fX.)z[HTR{M`;
