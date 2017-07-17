@@ -7,9 +7,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Input\StringInput;
 
-class DBCreateSchemaCommand extends Command
+class DBUpdateSchemaCommand extends Command
 {
-    const NAME = 'db:create-schema';
+    const NAME = 'db:update-schema';
     const DOCTRINE_CMD = 'doctrine:schema:update';
     const DOCTRINE_CMD_FLAGS = '--force';
 
