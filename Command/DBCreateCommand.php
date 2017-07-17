@@ -4,6 +4,7 @@ namespace Litvinab\Bundle\RestApiTestBundle\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class DBCreateCommand extends Command

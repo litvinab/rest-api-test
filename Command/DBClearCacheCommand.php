@@ -5,11 +5,10 @@ namespace Litvinab\Bundle\RestApiTestBundle\Command;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Symfony\Component\Console\Input\StringInput;
 
-class DBCacheClearCommand extends Command
+class DBClearCacheCommand extends Command
 {
-    const NAME = 'db:cache-clear';
+    const NAME = 'db:clear-cache';
 
     protected function configure()
     {
