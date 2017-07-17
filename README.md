@@ -2,13 +2,16 @@
 
 This symfony bundle is made to simplify testing of your rest API.
 
-It can be useful in running of following types of tests:
-- Functional Data Fixtures Based Tests;
-- Acceptance (Behat) Tests;
-
-See an appropriate sections below.
+It can be useful for functional tests based on data fixtures and for acceptance tests.
 
 Also current bundle provides some aliases of doctrine commands. It was made to prevent copy-paste of the same commands in your CI (for example, in Makefile, in setup of your tests, etc.)
+
+**Contents**
+
+- [Commands](https://github.com/litvinab/rest-api-test#commands);
+- [Functional Data Fixtures Based Tests](https://github.com/litvinab/rest-api-test#functional-data-fixtures-based-tests);
+- [Acceptance (Behat) Tests](https://github.com/litvinab/rest-api-test#acceptance-behat-tests);
+
 
 ## Installation
 
@@ -39,16 +42,7 @@ class AppKernel extends Kernel
 
 ```
 
-## Functional Data Fixtures Based Tests
-
-### Configuration
-
-**1.** Setup `parameters_test.yml` with test database name and connection details;
-
-**2.** Create data fixtures and configure them right;
-
-
-### Commands
+## Commands
 
 - `bin/console db:create` - alias of `doctrine:database:create` command;
 
@@ -58,6 +52,14 @@ class AppKernel extends Kernel
 
 - `bin/console db:clear-cache` - clean database metadata, query, result cache at the same time;
 
+
+## Functional Data Fixtures Based Tests
+
+### Configuration
+
+**1.** Setup `parameters_test.yml` with test database name and connection details;
+
+**2.** Create data fixtures and configure them right;
 
 ### How To Use
 
@@ -185,13 +187,13 @@ rest_api_test:
     rest_api_test.access_token: "5j%]4fX.)z[HTR{M"
 ```    
 
-`rest_api_test.controller_on` (false by default) - parameter to turn ON/OFF endpoint to reload database in symfony `prod` environment.
+`rest_api_test.controller_on` (*false* by default) - parameter to turn ON/OFF endpoint to reload database in symfony `prod` environment.
  
  **Be careful!** It should be turned ON for acceptance tests (external tests of rest API) only.  
  **Do not turn ON it at production server!**
  It would be good to setup additional security rules for this endpoint, for example, white list of IPs.
   
- `rest_api_test.access_token` (empty string by default) - random strong password, for example, `5j%]4fX.)z[HTR{M`;
+ `rest_api_test.access_token` (*empty string* by default) - random strong password, for example, `5j%]4fX.)z[HTR{M`;
 This token required to access to reload db endpoint; It will be applied only if`rest_api_test.controller_on` is set to `true`;
  
 
