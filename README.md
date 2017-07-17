@@ -46,7 +46,7 @@ class AppKernel extends Kernel
 
 - `bin/console db:create` - alias of `doctrine:database:create` command;
 
-- `bin/console db:create-scheme` - alias of `doctrine:schema:create --force` command;
+- `bin/console db:create-scheme` - alias of `doctrine:schema:update --force` command;
 
 - `bin/console db:load-fixtures` - alias of `doctrine:fixtures:load --no-interaction` command;
 
