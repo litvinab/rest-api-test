@@ -185,9 +185,10 @@ rest_api_test:
     rest_api_test.access_token: "5j%]4fX.)z[HTR{M"
 ```    
 
-`rest_api_test.controller_on` (false by default) - parameter to turn ON/OFF endpoint to reload database in symfony prod environment.
+`rest_api_test.controller_on` (false by default) - parameter to turn ON/OFF endpoint to reload database in symfony `prod` environment.
  
- **Be careful!** It should be turned ON for acceptance tests (external tests of rest API) only.  **Do not turn ON it at production server!**
+ **Be careful!** It should be turned ON for acceptance tests (external tests of rest API) only.  
+ **Do not turn ON it at production server!**
  It would be good to setup additional security rules for this endpoint, for example, white list of IPs.
   
  `rest_api_test.access_token` (empty string by default) - random strong password, for example, `5j%]4fX.)z[HTR{M`;
@@ -198,12 +199,14 @@ This token required to access to reload db endpoint; It will be applied only if`
 
 **Your application side:**
 
-1. Setup separated application instance with **not production database**;
+**1.** Setup data fixtures if they weren't setup yet;
+
+**2.** Setup separated application instance with **not production database**;
 
 Bundle provides possibility to reload data fixtures in `prod` symfony environment to make possible an end-user testing;
 
 
-2. check configuration setup in `parameters.yml`;
+**3.** check configuration setup in `parameters.yml`;
 
 
 **Behat tests runner side:**
