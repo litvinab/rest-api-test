@@ -25,7 +25,7 @@ class RequestAccessChecker
      * @param bool $turnedOn
      * @param string $accessToken
      */
-    public function __construct(bool $turnedOn, string $accessToken)
+    public function __construct($turnedOn, $accessToken)
     {
         $this->turnedOn = $turnedOn;
         $this->accessToken = $accessToken;

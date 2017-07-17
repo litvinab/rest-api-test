@@ -3,5 +3,5 @@ services:
     rest_api_test.request_access_checker:
         class: Litvinab\Bundle\RestApiTestBundle\Service\RequestAccessChecker
         arguments:
-          - "%rest_api_test.controller_on%"
-          - "%rest_api_test.access_token%"
+          - "@=container.hasParameter('rest_api_test.controller_on') ? parameter('rest_api_test.controller_on') : 'false'"
+          - "@=container.hasParameter('rest_api_test.access_token') ? parameter('rest_api_test.access_token') : ''"
