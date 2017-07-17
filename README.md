@@ -77,7 +77,7 @@ Call `db:create`, `db:create-schema` before using to create test database and cr
 
 It can be useful in repositories tests to have the same database state at the beggining of each test.
 
-**Methods:**
+Methods:
 ```php
 getContainer() 
 
@@ -89,7 +89,7 @@ getRepository($name)
 
 #### RestFixturesWebTestCase
 
-**Methods:**
+Methods:
 ```php
 getJson($endpoint, $headers = array())
 
@@ -102,7 +102,7 @@ deleteJson($endpoint, array $headers = array())
 reloadDb() - reload data fixtures by prompt without db recreation and schema update
 ```
 
-**Asserts:**
+Asserts:
 ```php
 assertResponse(Response $response, $expectedStatusCode, $expectedContent)
 
