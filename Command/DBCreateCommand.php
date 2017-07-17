@@ -10,17 +10,21 @@ class DBCreateCommand extends Command
 {
     const NAME = 'db:create';
     const DOCTRINE_CMD = 'doctrine:database:create';
+    const DOCTRINE_CMD_FLAGS = '--if-not-exists';
 
     protected function configure()
     {
         $this->setName(self::NAME)
-            ->setDescription('Alias of "doctrine:database:create" command')
-            ;
+            ->setDescription(sprintf('Alias of "%s %s" command', self::DOCTRINE_CMD, self::DOCTRINE_CMD_FLAGS));
+        ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $command = $this->getApplication()->find(self::DOCTRINE_CMD);
-        $command->run($input, $output);
+
+        $stringInput = new StringInput(self::DOCTRINE_CMD_FLAGS);
+        $stringInput->setInteractive(false);
+        $command->run($stringInput, $output);
     }
 }

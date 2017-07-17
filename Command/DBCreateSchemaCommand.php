@@ -11,12 +11,11 @@ class DBCreateSchemaCommand extends Command
 {
     const NAME = 'db:create-schema';
     const DOCTRINE_CMD = 'doctrine:schema:create';
-    const DOCTRINE_CMD_FLAGS = '--force';
 
     protected function configure()
     {
         $this->setName(self::NAME)
-            ->setDescription(sprintf('Alias of "%s %s" command', self::DOCTRINE_CMD, self::DOCTRINE_CMD_FLAGS));
+            ->setDescription(sprintf('Alias of "%s" command', self::DOCTRINE_CMD));
             ;
     }
 
