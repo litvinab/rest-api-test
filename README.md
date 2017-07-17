@@ -171,7 +171,10 @@ class AttributeControllerTest extends RestFixturesWebTestCase
 
 ### Configuration
 
-Setup separated application instance for acceptance tests and make points 1-3 from `Functional Data Fixtures Based Tests` section.
+
+ 
+
+and make points 1-3 from `Functional Data Fixtures Based Tests` section.
 
 **1.** Add route to `routing.yml`:
 
@@ -181,7 +184,7 @@ rest_api_test:
     prefix:   /api/test
 ```
 
-**2.** Add parameters to `parameters.yml` (Check that `rest_api_test.access_token` is secured enough):
+**2.** Add parameters to `parameters.yml` (`rest_api_test.access_token` value should be secured enough):
 ```yml
     rest_api_test.controller_on: true
     rest_api_test.access_token: "5j%]4fX.)z[HTR{M"
@@ -199,7 +202,12 @@ This token required to access to reload db endpoint; It will be applied only if`
 
 **Your application side:**
 
-check configuration setup in `parameters.yml`;
+1. Setup separated application instance with **not production database**;
+
+Bundle provides possibility to reload data fixtures in `prod` symfony environment to make possible an end-user testing;
+
+
+2. check configuration setup in `parameters.yml`;
 
 
 **Behat tests runner side:**
@@ -209,3 +217,5 @@ Make `GET` request to reload database state of your application. It should be ma
 Endpoint: `http://YOUR_DOMAIN/api/test/db/reload`
 
 Custom header: `Rest-API-Test-Access-Token: 5j%]4fX.)z[HTR{M`  (value is value of `rest_api_test.access_token` parameter);
+
+As result database mentioned in `parameters.yml` should be reloaded with your test data fixtures;
