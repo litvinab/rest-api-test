@@ -5,3 +5,19 @@ services:
         arguments:
           - "@=container.hasParameter('rest_api_test.controller_on') ? parameter('rest_api_test.controller_on') : 'false'"
           - "@=container.hasParameter('rest_api_test.access_token') ? parameter('rest_api_test.access_token') : ''"
+
+    Litvinab\Bundle\RestApiTestBundle\Command\DBClearCacheCommand:
+        tags:
+            - { name: 'console.command' }
+
+    Litvinab\Bundle\RestApiTestBundle\Command\DBCreateCommand:
+        tags:
+            - { name: 'console.command' }
+
+    Litvinab\Bundle\RestApiTestBundle\Command\DBLoadFixturesCommand:
+        tags:
+            - { name: 'console.command' }
+
+    Litvinab\Bundle\RestApiTestBundle\Command\DBUpdateSchemaCommand:
+        tags:
+            - { name: 'console.command' }
